@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
-
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profiles");
 const matchRoutes = require("./routes/matches");
@@ -14,11 +13,11 @@ const app = express();
 
 // ── Sécurité ────────────────────────────────────────────────
 app.use(helmet());
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(cors({ origin: "*", credentials: false }));
 
 // Rate limiting global
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
+  windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   message: { error: "Trop de requêtes, réessaie dans 15 minutes." },
