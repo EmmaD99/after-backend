@@ -128,7 +128,7 @@ const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#0d0a07" },
   header: { paddingTop: 60, paddingBottom: 16, textAlign: "center", fontSize: 28, fontStyle: "italic", color: "#c8a97e", letterSpacing: 6 },
   scroll: { padding: 16, paddingBottom: 40 },
-  center: { flex: 1, backgroundColor: "#0d0a07", justifyContent: "center", alignItems: "center" },
+  center: { flex: 1, backgroundColor: "#0d0a07", justifyContent: "center", alignItems: "center", paddingBottom: 60 },
   emptyIcon: { color: "#c8a97e", fontSize: 32, marginBottom: 16 },
   emptyTitle: { color: "#e8e0d5", fontSize: 18, fontStyle: "italic", marginBottom: 8 },
   emptyText: { color: "#5a4a3a", fontSize: 14 },
