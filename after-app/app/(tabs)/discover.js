@@ -3,6 +3,7 @@ import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, ActivityIndicator, Alert, Image
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import api from "../../services/api";
 
@@ -11,6 +12,7 @@ export default function DiscoverScreen() {
   const [loading, setLoading] = useState(true);
   const [simulating, setSimulating] = useState(null);
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => { loadProfiles(); }, []);
 
@@ -52,14 +54,16 @@ export default function DiscoverScreen() {
     } catch {}
   };
 
+  const centerStyle = [s.center, { paddingBottom: 60 + insets.bottom }];
+
   if (loading) return (
-    <View style={s.center}>
+    <View style={centerStyle}>
       <ActivityIndicator color="#c8a97e" size="large" />
     </View>
   );
 
   if (profiles.length === 0) return (
-    <View style={s.center}>
+    <View style={centerStyle}>
       <Text style={s.emptyIcon}>✦</Text>
       <Text style={s.emptyTitle}>Plus de profils pour l'instant</Text>
       <Text style={s.emptyText}>Reviens plus tard</Text>
@@ -128,7 +132,7 @@ const s = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#0d0a07" },
   header: { paddingTop: 60, paddingBottom: 16, textAlign: "center", fontSize: 28, fontStyle: "italic", color: "#c8a97e", letterSpacing: 6 },
   scroll: { padding: 16, paddingBottom: 40 },
-  center: { flex: 1, backgroundColor: "#0d0a07", justifyContent: "center", alignItems: "center", paddingBottom: 60 },
+  center: { flex: 1, backgroundColor: "#0d0a07", justifyContent: "center", alignItems: "center" },
   emptyIcon: { color: "#c8a97e", fontSize: 32, marginBottom: 16 },
   emptyTitle: { color: "#e8e0d5", fontSize: 18, fontStyle: "italic", marginBottom: 8 },
   emptyText: { color: "#5a4a3a", fontSize: 14 },
